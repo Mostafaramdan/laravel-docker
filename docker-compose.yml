@@ -13,17 +13,17 @@ services:
         - .:/var/www/html
         depends_on:
         - db
-        entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && /usr/local/bin/composer install && php artisan migrate && apache2-foreground"
+        entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && php artisan migrate && apache2-foreground"
 
     db:
         image: mysql:5.7
         container_name: mysql
         restart: always
         environment:
-                MYSQL_ROOT_PASSWORD: rootpass
-                MYSQL_DATABASE: db
-                MYSQL_USER: user
-                MYSQL_PASSWORD: supersecret
+            MYSQL_ROOT_PASSWORD: rootpass
+            MYSQL_DATABASE: db
+            MYSQL_USER: user
+            MYSQL_PASSWORD: supersecret
         volumes:
             - mysql-volume:/var/lib/mysql
             - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
