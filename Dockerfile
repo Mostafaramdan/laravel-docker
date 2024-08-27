@@ -12,6 +12,8 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev \
     && rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
 
+RUN apt-get update -y && apt-get install -y openssl zip unzip git
+
 # Install PHP extensions
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd zip mysqli pdo pdo_mysql
