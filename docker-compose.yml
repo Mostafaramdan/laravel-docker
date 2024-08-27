@@ -9,6 +9,9 @@ services:
         container_name: laravel-app
         ports:
         - "8000:80"
+        # Commenting out the volume to avoid conflicts
+        # volumes:
+        # - .:/var/www/html
         depends_on:
         - db
         entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && php artisan migrate && apache2-foreground"
