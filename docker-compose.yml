@@ -12,7 +12,6 @@ services:
         depends_on:
         - db
         entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && php artisan migrate && apache2-foreground"
-
     db:
         image: mysql:5.7
         container_name: mysql
