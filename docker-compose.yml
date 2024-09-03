@@ -23,17 +23,17 @@ services:
       - mysql-volume:/var/lib/mysql
       - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
 
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    container_name: phpmyadmin
-    restart: always
-    environment:
-      PMA_HOST: db
-      MYSQL_ROOT_PASSWORD: rootpass
-    ports:
-      - "9001:80"
-    depends_on:
-      - db
+  # phpmyadmin:
+  #   image: phpmyadmin/phpmyadmin
+  #   container_name: phpmyadmin
+  #   restart: always
+  #   environment:
+  #     PMA_HOST: db
+  #     MYSQL_ROOT_PASSWORD: rootpass
+  #   ports:
+  #     - "9001:80"
+  #   depends_on:
+  #     - db
 
   nginx:
     image: nginx:stable-alpine
