@@ -3,7 +3,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    image: mostafaramdan5544/laravel-docker
+    image: laravel-app
     container_name: laravel-app
     ports:
       - "8000:80"
