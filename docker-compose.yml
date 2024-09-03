@@ -7,6 +7,7 @@ services:
     image: mostafaramdan5544/laravel-docker
     depends_on:
       - db
+      - phpmyadmin
     entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && php artisan migrate && apache2-foreground"
   db:
     image: mysql:5.7
@@ -44,6 +45,15 @@ services:
     depends_on:
       - app
       - db
-
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - WATCHTOWER_TRACE=true
+      - WATCHTOWER_POLL_INTERVAL=30
+    command: --cleanup --interval 30 laravel-docker-app-1 laravel-docker-app-app-2
 volumes:
   mysql-volume:
