@@ -55,5 +55,7 @@ services:
       - WATCHTOWER_TRACE=true
       - WATCHTOWER_POLL_INTERVAL=30
     command: --cleanup --interval 30 laravel-docker-app-1 laravel-docker-app-app-2
+    depends_on:
+      - app
 volumes:
   mysql-volume:
