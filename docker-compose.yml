@@ -1,12 +1,10 @@
 services:
   app:
+    scale: 2
     build:
       context: .
       dockerfile: Dockerfile
     image: mostafaramdan5544/laravel-docker
-    container_name: laravel-app
-    ports:
-      - "8000:80"
     depends_on:
       - db
     entrypoint: /bin/bash -c "cp .env.example .env && php artisan key:generate && php artisan migrate && apache2-foreground"
